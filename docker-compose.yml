@@ -1,0 +1,46 @@
+version: "3.7"
+services:
+#  discovery:
+#    image: nutsfoundation/nuts-discovery:latest-dev
+#    networks:
+#      - nuts
+  notary:
+    image: nutsfoundation/nuts-consent-cordapp:latest-dev
+    networks:
+      - nuts
+    volumes:
+      - "./nodes/notary/:/opt/nuts/"
+    restart: on-failure
+  bundy:
+    image: nutsfoundation/nuts-consent-cordapp:latest-dev
+    networks:
+      - nuts
+    volumes:
+      - "./nodes/bundy/:/opt/nuts/"
+    restart: on-failure
+  dahmer:
+    image: nutsfoundation/nuts-consent-cordapp:latest-dev
+    networks:
+      - nuts
+    volumes:
+      - "./nodes/dahmer/:/opt/nuts/"
+    restart: on-failure
+  bundy-bridge:
+    image: nutsfoundation/nuts-consent-bridge:latest-dev
+    networks:
+      - nuts
+    ports:
+      - "8080:8080"
+    volumes:
+      - "./config/bundy/application.properties:/opt/nuts/application.properties"
+  dahmer-bridge:
+    image: nutsfoundation/nuts-consent-bridge:latest-dev
+    networks:
+      - nuts
+    ports:
+      - "8081:8080"
+    volumes:
+      - "./config/dahmer/application.properties:/opt/nuts/application.properties"
+networks:
+  nuts:
+    name: nuts
