@@ -3,9 +3,9 @@
 Nuts local network
 ##################
 
-.. _nuts-consent-local-development-docker:
-
 .. marker-for-readme
+
+.. _nuts-consent-local-development-docker:
 
 Running with docker
 *******************
