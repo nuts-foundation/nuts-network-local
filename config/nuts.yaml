@@ -1,0 +1,11 @@
+verbosity: debug
+address: :1323
+auth:
+  actingPartyCn: Demo EHR
+  publicUrl: https://example.org
+  irmaConfigPath: /opt/nuts/irma
+registry:
+  datadir: /opt/nuts/registry
+events:
+  zmqAddress: tcp://dahmer-bridge:5563
+  restAddress: http://dahmer-bridge:8080

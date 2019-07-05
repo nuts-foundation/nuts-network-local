@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Zorggroep Nuts",
+    "identifier": "urn:oid:2.16.840.1.113883.2.4.6.1:00000000",
+    "actors": [
+      {
+        "identifier": "urn:oid:2.16.840.1.113883.2.4.6.1:00000007"
+      }
+    ]
+  },
+  {
+    "name": "Zorggroep de franse slag",
+    "identifier": "urn:oid:2.16.840.1.113883.2.4.6.1:00000001",
+    "actors": [
+      {
+        "identifier": "urn:oid:2.16.840.1.113883.2.4.6.1:00000007"
+      }
+    ]
+  }
+]

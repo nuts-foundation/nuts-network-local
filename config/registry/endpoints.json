@@ -1,0 +1,16 @@
+[
+  {
+    "endpointType": "urn:nuts:endpoint:consent",
+    "identifier": "urn:ietf:rfc:1779::O=Nuts,C=NL,L=Groenlo,CN=nuts_corda_development_bundy",
+    "status": "active",
+    "version": "0.1.0",
+    "URL": "tcp://bundy:7886"
+  },
+  {
+    "endpointType": "urn:nuts:endpoint:consent",
+    "identifier": "urn:ietf:rfc:1779::O=Nuts,C=NL,L=Groenlo,CN=nuts_corda_development_dahmer",
+    "status": "active",
+    "version": "0.1.0",
+    "URL": "tcp://dahmer:7886"
+  }
+]

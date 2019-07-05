@@ -10,21 +10,18 @@ services:
       - nuts
     volumes:
       - "./nodes/notary/:/opt/nuts/"
-    restart: on-failure
   bundy:
     image: nutsfoundation/nuts-consent-cordapp:latest-dev
     networks:
       - nuts
     volumes:
       - "./nodes/bundy/:/opt/nuts/"
-    restart: on-failure
   dahmer:
     image: nutsfoundation/nuts-consent-cordapp:latest-dev
     networks:
       - nuts
     volumes:
       - "./nodes/dahmer/:/opt/nuts/"
-    restart: on-failure
   bundy-bridge:
     image: nutsfoundation/nuts-consent-bridge:latest-dev
     networks:
@@ -41,6 +38,20 @@ services:
       - "8081:8080"
     volumes:
       - "./config/dahmer/application.properties:/opt/nuts/application.properties"
+  nuts-service-space:
+    image: nutsfoundation/nuts-service-space:latest
+    environment:
+      NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
+    networks:
+      nuts:
+        aliases:
+          - registry
+    ports:
+      - "1323:1323"
+    volumes:
+      - "./config/nuts.yaml:/opt/nuts/nuts.yaml"
+      - "./config/registry/:/opt/nuts/registry"
+      - "./nodes/irma/:/opt/nuts/irma"
 networks:
   nuts:
     name: nuts
