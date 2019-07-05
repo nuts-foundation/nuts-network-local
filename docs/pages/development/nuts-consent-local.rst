@@ -38,6 +38,12 @@ Corda logs can also be viewed inside ``nodes/NODE/logs`` since ``nodes/NODE`` is
 
 ``-V`` will remount the volumes, this is needed when you change any of the properties files.
 
+All of the Nuts docker images are build directly from code on Docker Hub. To get the latest development images, use:
+
+.. code-block:: shell
+
+    docker-compose pull
+
 .. note::
 
     Local development runs without a discovery service.
