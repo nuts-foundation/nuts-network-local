@@ -9,3 +9,5 @@ registry:
 events:
   zmqAddress: tcp://dahmer-bridge:5563
   restAddress: http://dahmer-bridge:8080
+cstore:
+  connectionstring: /opt/nuts/sqlite.db

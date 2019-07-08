@@ -52,6 +52,7 @@ services:
       - "./config/nuts.yaml:/opt/nuts/nuts.yaml"
       - "./config/registry/:/opt/nuts/registry"
       - "./nodes/irma/:/opt/nuts/irma"
+      - "./nodes/sqlite/:/opt/nuts/sqlite"
 networks:
   nuts:
     name: nuts
