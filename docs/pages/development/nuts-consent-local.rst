@@ -57,4 +57,19 @@ Data
 
 All changes made to consent is persisted and available between restarts. All required data is stored under ``./nodes/*``.
 
-todo: example cases using agb: 0000000[0/1/7] and bsn 999999990
+Example consent request that can be send to the bundy node (``localhost:11323/api/consent``)
+
+.. code-block:: json
+
+
+    {
+        "subject": "urn:oid:2.16.840.1.113883.2.4.6.3:999999990",
+        "custodian": "urn:oid:2.16.840.1.113883.2.4.6.1:00000000",
+        "actors": [
+            "urn:oid:2.16.840.1.113883.2.4.6.1:00000001"
+        ],
+        "performer": "urn:oid:2.16.840.1.113883.2.4.6.1:00000007",
+        "period": {
+            "start": "2019-07-01T12:00:00+02:00"
+        }
+    }
