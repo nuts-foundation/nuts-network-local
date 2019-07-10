@@ -4,10 +4,13 @@ auth:
   actingPartyCn: Demo EHR
   publicUrl: https://example.org
   irmaConfigPath: /opt/nuts/irma
+crypto:
+  fspath: /opt/nuts/keys
 registry:
   datadir: /opt/nuts/registry
 events:
-  zmqAddress: tcp://dahmer-bridge:5563
-  restAddress: http://dahmer-bridge:8080
+  zmqAddress: tcp://bundy-bridge:5563
+cbridge:
+  address: http://bundy-bridge:8080
 cstore:
-  connectionstring: /opt/nuts/sqlite.db
+  connectionstring: /opt/nuts/sqlite/sqlite.db

@@ -24,21 +24,25 @@ services:
       - "./nodes/dahmer/:/opt/nuts/"
   bundy-bridge:
     image: nutsfoundation/nuts-consent-bridge:latest-dev
+    environment:
+      SPRING_SERVER_ADDRESS: bundy-bridge
     networks:
       - nuts
     ports:
-      - "8080:8080"
+      - "18080:8080"
     volumes:
       - "./config/bundy/application.properties:/opt/nuts/application.properties"
   dahmer-bridge:
     image: nutsfoundation/nuts-consent-bridge:latest-dev
+    environment:
+      SPRING_SERVER_ADDRESS: dahmer-bridge
     networks:
       - nuts
     ports:
-      - "8081:8080"
+      - "28080:8080"
     volumes:
       - "./config/dahmer/application.properties:/opt/nuts/application.properties"
-  nuts-service-space:
+  bundy-nuts-service-space:
     image: nutsfoundation/nuts-service-space:latest
     environment:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
@@ -47,12 +51,29 @@ services:
         aliases:
           - registry
     ports:
-      - "1323:1323"
+      - "11323:1323"
     volumes:
-      - "./config/nuts.yaml:/opt/nuts/nuts.yaml"
+      - "./config/bundy/nuts.yaml:/opt/nuts/nuts.yaml"
       - "./config/registry/:/opt/nuts/registry"
       - "./nodes/irma/:/opt/nuts/irma"
-      - "./nodes/sqlite/:/opt/nuts/sqlite"
+      - "./nodes/bundy/sqlite/:/opt/nuts/sqlite"
+      - "./config/bundy/keys/:/opt/nuts/keys"
+  dahmer-nuts-service-space:
+    image: nutsfoundation/nuts-service-space:latest
+    environment:
+      NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
+    networks:
+      nuts:
+        aliases:
+        - registry
+    ports:
+      - "21323:1323"
+    volumes:
+      - "./config/dahmer/nuts.yaml:/opt/nuts/nuts.yaml"
+      - "./config/registry/:/opt/nuts/registry"
+      - "./nodes/irma/:/opt/nuts/irma"
+      - "./nodes/dahmer/sqlite/:/opt/nuts/sqlite"
+      - "./config/dahmer/keys/:/opt/nuts/keys"
 networks:
   nuts:
     name: nuts

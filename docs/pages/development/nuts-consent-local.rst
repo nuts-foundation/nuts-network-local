@@ -51,3 +51,10 @@ All of the Nuts docker images are build directly from code on Docker Hub. To get
 .. note::
 
     Running everything at a single machine can be a bit demanding since you're virtually running 3 nodes isstead of 1. If things go too slow, give docker some more resources.
+
+Data
+****
+
+All changes made to consent is persisted and available between restarts. All required data is stored under ``./nodes/*``.
+
+todo: example cases using agb: 0000000[0/1/7] and bsn 999999990
