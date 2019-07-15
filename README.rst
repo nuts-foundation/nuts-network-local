@@ -1,7 +1,7 @@
 Local nuts network
 ##################
 
-Setup for running Nuts lcoally
+Setup for running Nuts locally
 
 Running with docker
 *******************
@@ -45,5 +45,5 @@ Recreate node setup
 
 .. code-block:: shell
 
-   nodes $ java -jar corda-tools-network-bootstrapper-4.1.jar --dir .
+   nodes $ java -jar corda-tools-network-bootstrapper-4.1.jar --dir . --copy-cordapps Yes
 
