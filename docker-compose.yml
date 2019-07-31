@@ -27,7 +27,7 @@ services:
       - "./nodes/dahmer/:/opt/nuts/"
     command: "-jar /opt/nuts/corda.jar --network-root-truststore-password=changeit --log-to-console"
   bundy-bridge:
-    image: nutsfoundation/nuts-consent-bridge:latest-dev
+    image: nutsfoundation/nuts-consent-bridge:nats
     environment:
       SPRING_SERVER_ADDRESS: bundy-bridge
     networks:
@@ -37,7 +37,7 @@ services:
     volumes:
       - "./config/bundy/application.properties:/opt/nuts/application.properties"
   dahmer-bridge:
-    image: nutsfoundation/nuts-consent-bridge:latest-dev
+    image: nutsfoundation/nuts-consent-bridge:nats
     environment:
       SPRING_SERVER_ADDRESS: dahmer-bridge
     networks:
