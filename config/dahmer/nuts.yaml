@@ -10,6 +10,7 @@ registry:
   datadir: /opt/nuts/registry
 events:
   zmqAddress: tcp://dahmer-bridge:5563
+  connectionstring: file:eventstore.db
 cbridge:
   address: http://dahmer-bridge:8080
 cstore:

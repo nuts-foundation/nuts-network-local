@@ -11,6 +11,7 @@ registry:
   datadir: /opt/nuts/registry
 events:
   zmqAddress: tcp://bundy-bridge:5563
+  connectionstring: file:eventstore.db
 cbridge:
   address: http://bundy-bridge:8080
 cstore:
