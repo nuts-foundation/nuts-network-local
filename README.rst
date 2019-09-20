@@ -16,9 +16,9 @@ Generate corda nodes:
 
 .. code-block:: shell
 
-    cd nodes && java -jar corda-tools-network-bootstrapper-4.1.jar --dir .
+    cd nodes && java -jar corda-tools-network-bootstrapper-4.1.jar --dir . --copy-cordapps Yes
 
-More info on how to bootstrap a corda network: https://docs.corda.net/network-bootstrapper.html --copy-cordapps Yes
+More info on how to bootstrap a corda network: https://docs.corda.net/network-bootstrapper.html
 
 To start
 
