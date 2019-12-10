@@ -5,14 +5,14 @@ services:
 #    networks:
 #      - nuts
   notary:
-    image: nutsfoundation/nuts-consent-cordapp:release-0.9.0-dev
+    image: nutsfoundation/nuts-consent-cordapp:release-0.11.0-dev
     networks:
       - nuts
     volumes:
       - "./nodes/notary/:/opt/nuts/"
     command: "-jar /opt/nuts/corda.jar --network-root-truststore-password=changeit --log-to-console"
   bundy:
-    image: nutsfoundation/nuts-consent-cordapp:release-0.9.0-dev
+    image: nutsfoundation/nuts-consent-cordapp:release-0.11.0-dev
     networks:
       - nuts
     volumes:
@@ -20,14 +20,14 @@ services:
 #    command: "-Dlog4j.configurationFile=sql.xml -jar /opt/nuts/corda.jar --network-root-truststore-password=changeit --log-to-console"
     command: "-jar /opt/nuts/corda.jar --network-root-truststore-password=changeit --log-to-console"
   dahmer:
-    image: nutsfoundation/nuts-consent-cordapp:release-0.9.0-dev
+    image: nutsfoundation/nuts-consent-cordapp:release-0.11.0-dev
     networks:
       - nuts
     volumes:
       - "./nodes/dahmer/:/opt/nuts/"
     command: "-jar /opt/nuts/corda.jar --network-root-truststore-password=changeit --log-to-console"
   bundy-bridge:
-    image: nutsfoundation/nuts-consent-bridge:release-0.9.0-dev
+    image: nutsfoundation/nuts-consent-bridge:release-0.11.0-dev
     environment:
       SPRING_SERVER_ADDRESS: bundy-bridge
     networks:
@@ -37,7 +37,7 @@ services:
     volumes:
       - "./config/bundy/application.properties:/opt/nuts/application.properties"
   dahmer-bridge:
-    image: nutsfoundation/nuts-consent-bridge:release-0.9.0-dev
+    image: nutsfoundation/nuts-consent-bridge:release-0.11.0-dev
     environment:
       SPRING_SERVER_ADDRESS: dahmer-bridge
     networks:
@@ -47,7 +47,7 @@ services:
     volumes:
       - "./config/dahmer/application.properties:/opt/nuts/application.properties"
   bundy-nuts-service-space:
-    image: nutsfoundation/nuts-service-space:release-0.9.0
+    image: nutsfoundation/nuts-service-space:release-0.11.0
     environment:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
     networks:
@@ -63,7 +63,7 @@ services:
       - "./nodes/bundy/sqlite/:/opt/nuts/sqlite"
       - "./config/bundy/keys/:/opt/nuts/keys"
   dahmer-nuts-service-space:
-    image: nutsfoundation/nuts-service-space:release-0.9.0
+    image: nutsfoundation/nuts-service-space:release-0.11.0
     environment:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
     networks:
