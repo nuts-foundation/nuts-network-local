@@ -10,13 +10,13 @@ Running with docker
 
 This repo contains a set of properties, keys, config and other files for setting up a local development environment. This is all connected together with a single ``docker-compose.yml`` file. You'll need to have docker and java installed.
 
-First get the Corda network bootstrapper tool from https://repo1.maven.org/maven2/net/corda/corda-tools-network-bootstrapper/4.1/
+First get the Corda network bootstrapper tool from https://repo1.maven.org/maven2/net/corda/corda-tools-network-bootstrapper/4.3/
 
 Generate corda nodes:
 
 .. code-block:: shell
 
-    cd nodes && java -jar corda-tools-network-bootstrapper-4.1.jar --dir . --copy-cordapps Yes
+    cd nodes && java -jar corda-tools-network-bootstrapper-4.3.jar --dir . --copy-cordapps Yes
 
 More info on how to bootstrap a corda network: https://docs.corda.net/network-bootstrapper.html
 
