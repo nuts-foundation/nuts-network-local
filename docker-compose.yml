@@ -61,7 +61,7 @@ services:
     volumes:
       - "./config/bundy/nuts.yaml:/opt/nuts/nuts.yaml"
       - "./config/registry/:/opt/nuts/registry"
-      - "./nodes/irma/:/opt/nuts/irma"
+      - "./nodes/bundy/irma/:/opt/nuts/irma"
       - "./nodes/bundy/sqlite/:/opt/nuts/sqlite"
       - "./config/bundy/keys/:/opt/nuts/keys"
   dahmer-nuts-service-space:
@@ -77,7 +77,7 @@ services:
     volumes:
       - "./config/dahmer/nuts.yaml:/opt/nuts/nuts.yaml"
       - "./config/registry/:/opt/nuts/registry"
-      - "./nodes/irma/:/opt/nuts/irma"
+      - "./nodes/dahmer/irma/:/opt/nuts/irma"
       - "./nodes/dahmer/sqlite/:/opt/nuts/sqlite"
       - "./config/dahmer/keys/:/opt/nuts/keys"
 networks:

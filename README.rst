@@ -1,7 +1,7 @@
 Local nuts network
 ##################
 
-Setup for running Nuts lcoally
+Setup for running Nuts locally
 
 .. _nuts-consent-local-development-docker:
 
@@ -48,7 +48,7 @@ All of the Nuts docker images are build directly from code on Docker Hub. To get
 
 .. note::
 
-    Running everything at a single machine can be a bit demanding since you're virtually running 3 nodes isstead of 1. If things go too slow, give docker some more resources.
+    Running everything at a single machine can be a bit demanding since you're virtually running 3 nodes instead of 1. If things go too slow, give docker some more resources.
 
 Data
 ****
@@ -59,19 +59,21 @@ Example consent request that can be send to the bundy node (``localhost:11323/ap
 
 .. code-block:: json
 
+
     {
-      "subject": "urn:oid:2.16.840.1.113883.2.4.6.3:999999939",
-      "custodian": "urn:oid:2.16.840.1.113883.2.4.6.1:00000000",
-      "actor": "urn:oid:2.16.840.1.113883.2.4.6.1:00000001",
-      "performer": "urn:oid:2.16.840.1.113883.2.4.6.1:00000007",
-      "records": [{
-        "consentProof": {
-          "contentType": "text/plain",
-          "data": "cGRmIGRvY3VtZW50IHdpdGggc2lnbmF0dXJl"
-        },
-        "period": {
-            "start": "2019-07-04T12:00:00+02:02",
-            "end": "2020-07-03T12:00:00+02:00"
-        }
-      }]
+        "subject": "urn:oid:2.16.840.1.113883.2.4.6.3:999999990",
+        "custodian": "urn:oid:2.16.840.1.113883.2.4.6.1:00000000",
+        "actor": "urn:oid:2.16.840.1.113883.2.4.6.1:00000001",
+        "performer": "urn:oid:2.16.840.1.113883.2.4.6.1:00000007",
+        "records": [{
+            "consentProof": {
+                "contentType": "text/plain",
+                "data": "cGRmIGRvY3VtZW50IHdpdGggc2lnbmF0dXJl"
+            },
+            "period": {
+                  "start": "2019-07-03T12:00:00+02:02",
+                  "end": "2020-07-01T12:00:00+02:00"
+            }
+        }]
     }
+
