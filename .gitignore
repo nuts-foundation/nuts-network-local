@@ -43,6 +43,8 @@ nodes/notary
 corda-tools-network-bootstrapper*
 
 # keys and events
-config/bundy/keys/
-config/dahmer/keys/
-config/registry/
+config/bundy/keys/*.cert
+config/bundy/keys/*.pem
+config/dahmer/keys/*.cert
+config/dahmer/keys/*.pem
+config/registry/events/*.json
