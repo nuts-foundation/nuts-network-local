@@ -1,0 +1,14 @@
+{
+  "type": "RegisterEndpointEvent",
+  "issuedAt": "2020-03-06T10:23:59.0536109Z",
+  "payload": {
+    "organization": "urn:oid:2.16.840.1.113883.2.4.6.1:43215678",
+    "URL": "http://demo-ehr:82",
+    "endpointType": "urn:oid:1.3.6.1.4.1.54851.2:demo-ehr",
+    "identifier": "b282174e-947f-41d3-b254-508a9d0dc96c",
+    "status": "active",
+    "properties": {
+      "authorizationServerURL": "http://dahmer-nuts-service-space:1323"
+    }
+  }
+}

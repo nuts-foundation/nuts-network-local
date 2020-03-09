@@ -1,0 +1,17 @@
+{
+  "type": "VendorClaimEvent",
+  "issuedAt": "2020-03-02T15:48:58.7961501Z",
+  "payload": {
+    "vendorIdentifier": "urn:oid:1.3.6.1.4.1.54851.4:00000002",
+    "orgIdentifier": "urn:oid:2.16.840.1.113883.2.4.6.1:87654321",
+    "orgName": "Huisartsenpraktijk Nootenboom",
+    "orgKeys": [
+      {
+        "e": "AQAB",
+        "kty": "RSA",
+        "n": "wanDVrRU7VYeEWGk2r7AchJVqBYpFCb6nuTqB0bRVlYKoTJJaAczB_biGUCehGDD6RNVG1fbR34BR6PWVSg19yotII2vEGrxB4unjuhwC0v8whS-rTlytHSLCyeTRYJWG8S49iBcCSNLD5J4uGuAiH4l_qotZd1LW5Evq4EwoqdI401cna3qHToGOaeNHu5KUNStB4aIIWt0Q43kQvGNc3Z1-5W0leCdQXDwBVRyRYx_b03ZjxvflJdqnkzthTIe5kvRChENTVKBFYr362rqgiN4umI6ntjFzubCdoPyFOpQ9BIsZVPfppooT4cf5SLeVVQoDh6CAE2y8HdzltCIOQ"
+      }
+    ],
+    "start": "2020-03-02T15:48:58.7961274Z"
+  }
+}

@@ -4,6 +4,24 @@ services:
 #    image: nutsfoundation/nuts-discovery:release-0.9.0-dev
 #    networks:
 #      - nuts
+  redis:
+    image: redis
+    networks:
+      - nuts
+    ports:
+      - "6379:6379"
+  demo-ehr:
+    image: nutsfoundation/nuts-demo-ehr:sso
+    environment:
+      REDIS_SERVER_ADDRESS: redis
+    networks:
+      - nuts
+    ports:
+      - "80:80"
+      - "81:81"
+      - "82:82"
+    volumes:
+      - "./config/demo-ehr/:/app/config/"
   notary:
     image: nutsfoundation/nuts-consent-cordapp:release-0.12.0-dev
     networks:
@@ -49,7 +67,11 @@ services:
     volumes:
       - "./config/dahmer/application.properties:/opt/nuts/application.properties"
   bundy-nuts-service-space:
+<<<<<<< HEAD
     image: nutsfoundation/nuts-service-space:release-0.12.0
+=======
+    image: nutsfoundation/nuts-service-space:sso
+>>>>>>> Add SSO config
     environment:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
     networks:
@@ -58,6 +80,8 @@ services:
           - registry
     ports:
       - "11323:1323"
+      - "11324:4222"
+
     volumes:
       - "./config/bundy/nuts.yaml:/opt/nuts/nuts.yaml"
       - "./config/registry:/opt/nuts/registry"
@@ -65,7 +89,7 @@ services:
       - "./nodes/bundy/sqlite:/opt/nuts/sqlite"
       - "./config/bundy/keys:/opt/nuts/keys"
   dahmer-nuts-service-space:
-    image: nutsfoundation/nuts-service-space:release-0.12.0
+    image: nutsfoundation/nuts-service-space:sso
     environment:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
     networks:
@@ -74,6 +98,7 @@ services:
         - registry
     ports:
       - "21323:1323"
+      - "21324:4222"
     volumes:
       - "./config/dahmer/nuts.yaml:/opt/nuts/nuts.yaml"
       - "./config/registry:/opt/nuts/registry"
