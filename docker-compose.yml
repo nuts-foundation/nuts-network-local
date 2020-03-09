@@ -67,11 +67,7 @@ services:
     volumes:
       - "./config/dahmer/application.properties:/opt/nuts/application.properties"
   bundy-nuts-service-space:
-<<<<<<< HEAD
-    image: nutsfoundation/nuts-service-space:release-0.12.0
-=======
     image: nutsfoundation/nuts-service-space:sso
->>>>>>> Add SSO config
     environment:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
     networks:
