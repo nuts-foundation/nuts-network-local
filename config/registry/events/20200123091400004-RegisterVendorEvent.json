@@ -1,7 +1,0 @@
-{
-  "type": "RegisterVendorEvent",
-  "payload": {
-    "name": "WeCare",
-    "identifier": "87654321"
-  }
-}

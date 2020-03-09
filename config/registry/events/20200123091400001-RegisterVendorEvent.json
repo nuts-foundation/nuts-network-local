@@ -1,7 +1,0 @@
-{
-  "type": "RegisterVendorEvent",
-  "payload": {
-    "name": "International Healthcare Solutions",
-    "identifier": "12345678"
-  }
-}
