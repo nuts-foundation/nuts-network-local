@@ -42,6 +42,11 @@ nodes/notary
 # too large for github
 corda-tools-network-bootstrapper*
 
+# we use templates, so ignore al generated config files
+ngrok.yml
+config/bundy/nuts.yaml
+config/dahmer/nuts.yaml
+
 # keys and events
 config/bundy/keys/*.cert
 config/bundy/keys/*.pem

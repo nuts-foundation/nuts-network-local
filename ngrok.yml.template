@@ -1,0 +1,8 @@
+authtoken: ${NGROK_TOKEN}
+tunnels:
+  bundy:
+    proto: http
+    addr: 11323
+  dahmer:
+    proto: http
+    addr: 21323

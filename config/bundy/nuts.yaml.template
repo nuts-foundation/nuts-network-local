@@ -2,18 +2,19 @@ verbosity: debug
 address: :1323
 auth:
   actingPartyCn: Demo EHR
-  publicUrl: https://example.org
+  publicUrl: ${PUBLIC_URL}
   irmaConfigPath: /opt/nuts/irma
   enableCORS: true
   irmaSchemeManager: irma-demo
+  skipAutoUpdateIrmaSchemas: true
 crypto:
   fspath: /opt/nuts/keys
 registry:
   datadir: /opt/nuts/registry
 events:
-  zmqAddress: tcp://dahmer-bridge:5563
+  zmqAddress: tcp://bundy-bridge:5563
   connectionstring: file:eventstore.db
 cbridge:
-  address: http://dahmer-bridge:8080
+  address: http://bundy-bridge:8080
 cstore:
   connectionstring: /opt/nuts/sqlite/sqlite.db

@@ -2,19 +2,24 @@ docker_cmd="docker-compose up"
 
 if ! [ -x "$(command -v docker-compose)" ]; then
   echo 'Error: docker-compose is not installed. This local network consists of a lot of docker containers.' >&2
-  echo 'download it here: https://docs.docker.com/compose/install/'
+  echo 'Download it here: https://docs.docker.com/compose/install/'
   exit 1
 fi
 
 if ! [ -x "$(command -v jq)" ]; then
-  echo 'Error: jq is not installed. We need it for parsing json output in this bash script.' >&2
-  echo 'download it here: https://stedolan.github.io/jq/'
+  echo 'Error: jq is not installed. We use it for parsing json output in this bash script.' >&2
+  echo 'Download it here: https://stedolan.github.io/jq/'
   exit 1
 fi
 
 if ! [ -x "$(command -v ngrok)" ]; then
-  echo 'Error: ngrok is not installed. We need it for exposing your local irma server to a mobile phone.' >&2
-  echo 'download it here: https://stedolan.github.io/jq/'
+  echo 'Error: ngrok is not installed. We use it for exposing your local irma server to a mobile phone.' >&2
+  echo 'Download it here: https://stedolan.github.io/jq/'
+  exit 1
+fi
+
+if ! [ -x "$(command -v curl)" ]; then
+  echo 'Error: curl is not installed. We use it to extract active public_urls from ngrok' >&2
   exit 1
 fi
 
@@ -27,6 +32,14 @@ if [ "$#" -ge 1 ]; then
     echo "usage: ./start-network.sh [minimal|ehr]"
     exit
   fi
+fi
+
+if [ ! -f ./ngrok.yml ]; then
+  echo "No active ./ngrok.yml configuration found, let's create one"
+  echo You need a ngrok auth token. Get one by creating a free account on ngrok.com
+  read -p "token: " ngrok_token
+  export NGROK_TOKEN=$ngrok_token
+  envsubst < "./ngrok.yml.template" > "./ngrok.yml" 2>/dev/null
 fi
 
 # start up ngrok
