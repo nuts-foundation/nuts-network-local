@@ -34,7 +34,7 @@ services:
     networks:
       - nuts
     ports:
-      - "2222:2222"
+      - "12222:2222"
     volumes:
       - "./nodes/bundy/:/opt/nuts/"
 #    command: "-Dlog4j.configurationFile=sql.xml -jar /opt/nuts/corda.jar --network-root-truststore-password=changeit --log-to-console"
@@ -43,11 +43,13 @@ services:
     image: nutsfoundation/nuts-consent-cordapp:release-0.12.0-dev
     networks:
       - nuts
+    ports:
+      - "22222:2222"
     volumes:
       - "./nodes/dahmer/:/opt/nuts/"
     command: "-jar /opt/nuts/corda.jar --network-root-truststore-password=changeit --log-to-console"
   bundy-bridge:
-    image: nutsfoundation/nuts-consent-bridge:release-0.12.0-dev
+    image: nutsfoundation/nuts-consent-bridge:latest-dev
     environment:
       SPRING_SERVER_ADDRESS: bundy-bridge
     networks:
@@ -57,7 +59,7 @@ services:
     volumes:
       - "./config/bundy/application.properties:/opt/nuts/application.properties"
   dahmer-bridge:
-    image: nutsfoundation/nuts-consent-bridge:release-0.12.0-dev
+    image: nutsfoundation/nuts-consent-bridge:latest-dev
     environment:
       SPRING_SERVER_ADDRESS: dahmer-bridge
     networks:
