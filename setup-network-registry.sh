@@ -13,6 +13,10 @@ echo deleting registry events...
 rm $(pwd)/config/registry/events/*
 
 echo starting docker
+# Make sure there is a yaml
+cp ./config/bundy/nuts.yaml.template ./config/bundy/nuts.yaml
+cp ./config/dahmer/nuts.yaml.template ./config/dahmer/nuts.yaml
+
 nohup docker-compose up dahmer-nuts-service-space bundy-nuts-service-space >/dev/null &
 # store pid in variable
 bg_pid=$!
