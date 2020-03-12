@@ -53,6 +53,12 @@ trap "kill -2 $bg_pid" EXIT
 # wait until ngrok has setup it connections
 sleep 3
 
+# Create the nuts.yaml config
+
+# First, remove the configs
+rm -r ./config/bundy/nuts.yaml
+rm -r ./config/dahmer/nuts.yaml
+
 # retrieve public urls for bundy and dahmer
 bundy_public_url=$(curl -s localhost:4040/api/tunnels | jq '.tunnels[] | select(.proto == "https") | select(.name == "bundy") | .public_url')
 dahmer_public_url=$(curl -s localhost:4040/api/tunnels | jq '.tunnels[] | select(.proto == "https") | select(.name == "dahmer") | .public_url')

@@ -13,7 +13,10 @@ echo deleting registry events...
 rm $(pwd)/config/registry/events/*
 
 echo starting docker
-# Make sure there is a yaml
+# Make sure there is a nuts.yaml and the nuts.yaml is not a directory
+# This can happen when docker compose tries to mount a non existing file
+rm -r ./config/bundy/nuts.yaml
+rm -r ./config/dahmer/nuts.yaml
 cp ./config/bundy/nuts.yaml.template ./config/bundy/nuts.yaml
 cp ./config/dahmer/nuts.yaml.template ./config/dahmer/nuts.yaml
 
