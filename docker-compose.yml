@@ -17,9 +17,9 @@ services:
     networks:
       - nuts
     ports:
-      - "80:80"
-      - "81:81"
-      - "82:82"
+      - "8000:80"
+      - "8001:81"
+      - "8002:82"
     volumes:
       - "./config/demo-ehr/:/app/config/"
   notary:

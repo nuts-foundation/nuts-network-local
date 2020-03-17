@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "This script removes all private keys and registry events and generates new ones."
 read -p "Do you want to continue? [Yes/No]" choice
 
@@ -167,7 +168,7 @@ docker run \
 --env NUTS_CONFIGFILE=/opt/nuts/nuts.yaml \
 --env NUTS_MODE=cli \
 --network=nuts \
-nutsfoundation/nuts-service-space:sso registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_2_AGB} urn:oid:1.3.6.1.4.1.54851.2:demo-ehr "http://demo-ehr:81" -p authorizationServerURL="http://dahmer-nuts-service-space:1323" \
+nutsfoundation/nuts-service-space:sso registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_2_AGB} urn:oid:1.3.6.1.4.1.54851.2:demo-ehr "http://demo-ehr:8001" -p authorizationServerURL="http://dahmer-nuts-service-space:1323" \
 > /dev/null
 
 docker run \
@@ -189,7 +190,7 @@ docker run \
 --env NUTS_CONFIGFILE=/opt/nuts/nuts.yaml \
 --env NUTS_MODE=cli \
 --network=nuts \
-nutsfoundation/nuts-service-space:sso registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_2_AGB} urn:oid:1.3.6.1.4.1.54851.1:nuts-sso "http://localhost:81" -p authorizationServerURL="http://dahmer-nuts-service-space:1323" \
+nutsfoundation/nuts-service-space:sso registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_2_AGB} urn:oid:1.3.6.1.4.1.54851.1:nuts-sso "http://localhost:8001" -p authorizationServerURL="http://dahmer-nuts-service-space:1323" \
 > /dev/null
 
 echo adding endpoints for ${ORGANIZATION_3_NAME}

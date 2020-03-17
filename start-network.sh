@@ -1,3 +1,4 @@
+#!/bin/bash
 docker_cmd="docker-compose up"
 
 if ! [ -x "$(command -v docker-compose)" ]; then

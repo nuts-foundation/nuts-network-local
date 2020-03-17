@@ -1,3 +1,4 @@
+#!/bin/bash
 cordapp_version=0.12.0
 
 if ! [ -x "$(command -v docker)" ]; then
