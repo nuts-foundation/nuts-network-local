@@ -15,7 +15,7 @@ fi
 
 if ! [ -x "$(command -v ngrok)" ]; then
   echo 'Error: ngrok is not installed. We use it for exposing your local irma server to a mobile phone.' >&2
-  echo 'Download it here: https://ngrok.com/download'
+  echo 'Download it here: https://ngrok.com/download and put it somewhere in your PATH'
   exit 1
 fi
 
