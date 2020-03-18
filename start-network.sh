@@ -64,6 +64,11 @@ rm -r ./config/dahmer/nuts.yaml
 bundy_public_url=$(curl -s localhost:4040/api/tunnels | jq '.tunnels[] | select(.proto == "https") | select(.name == "bundy") | .public_url')
 dahmer_public_url=$(curl -s localhost:4040/api/tunnels | jq '.tunnels[] | select(.proto == "https") | select(.name == "dahmer") | .public_url')
 
+if [[ -z "$bundy_public_url" ]] || [[ -z "$dahmer_public_url" ]]; then
+  echo "could not obtain public urls. Is ngrok correctly configured? Check your ngrok.yml and your token."
+  exit 1
+fi
+
 echo public urls:
 echo bundy_public_url: $bundy_public_url
 echo dahmer_public_url: $dahmer_public_url

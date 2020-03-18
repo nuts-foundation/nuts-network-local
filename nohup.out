@@ -1,0 +1,42 @@
+Your account may not run more than 2 tunnels over a single ngrok client session.
+The tunnels already running on this session are:
+[https://91c2d176.ngrok.io https://27c5436f.ngrok.io]
+
+
+ERR_NGROK_324
+
+Your account may not run more than 2 tunnels over a single ngrok client session.
+The tunnels already running on this session are:
+[https://8a0eeed2.ngrok.io https://a118570f.ngrok.io]
+
+
+ERR_NGROK_324
+
+Your account may not run more than 2 tunnels over a single ngrok client session.
+The tunnels already running on this session are:
+[https://e3f8cafc.ngrok.io https://bd266de7.ngrok.io]
+
+
+ERR_NGROK_324
+
+The authtoken you specified does not look like a proper ngrok tunnel authtoken.
+Your authtoken: asdf
+Instructions to install your authtoken are on your ngrok dashboard:
+https://dashboard.ngrok.com/auth
+
+ERR_NGROK_105
+
+The authtoken you specified does not look like a proper ngrok tunnel authtoken.
+Your authtoken: asdf
+Instructions to install your authtoken are on your ngrok dashboard:
+https://dashboard.ngrok.com/auth
+
+ERR_NGROK_105
+
+The authtoken you specified does not look like a proper ngrok tunnel authtoken.
+Your authtoken: asdf
+Instructions to install your authtoken are on your ngrok dashboard:
+https://dashboard.ngrok.com/auth
+
+ERR_NGROK_105
+
