@@ -24,6 +24,11 @@ if ! [ -x "$(command -v curl)" ]; then
   exit 1
 fi
 
+if ! [ -x "$(command -v envsubst)" ]; then
+  echo 'Error: envsubst is not installed. We use it to create templates. On a mac you can install it via the brew gettext package.' >&2
+  exit 1
+fi
+
 if [ "$#" -ge 1 ]; then
   if [ "$1" == "minimal" ]; then
     docker_cmd="docker-compose up dahmer-nuts-service-space bundy-nuts-service-space"
