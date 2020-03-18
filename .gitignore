@@ -53,3 +53,5 @@ config/bundy/keys/*.pem
 config/dahmer/keys/*.cert
 config/dahmer/keys/*.pem
 config/registry/events/*.json
+
+nohup.out
