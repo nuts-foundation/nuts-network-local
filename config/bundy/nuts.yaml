@@ -4,6 +4,7 @@ auth:
   actingPartyCn: Demo EHR
   publicUrl: https://example.org
   irmaConfigPath: /opt/nuts/irma
+  skipAutoUpdateIrmaSchemas: true
   enableCORS: true
 crypto:
   fspath: /opt/nuts/keys
