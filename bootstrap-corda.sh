@@ -1,5 +1,5 @@
 #!/bin/bash
-cordapp_version=0.12.0
+cordapp_version=0.13.0
 
 if ! [ -x "$(command -v docker)" ]; then
   echo 'Error: docker is not installed. This local network consists of a lot of docker containers.' >&2
@@ -33,10 +33,10 @@ curl -O -s "https://repo1.maven.org/maven2/nl/nuts/consent/cordapp/flows/$cordap
 curl -O -s "https://repo1.maven.org/maven2/nl/nuts/consent/cordapp/contract/$cordapp_version/contract-$cordapp_version.jar"
 
 echo downloading corda network boostrapper
-curl -s -O https://repo1.maven.org/maven2/net/corda/corda-tools-network-bootstrapper/4.3/corda-tools-network-bootstrapper-4.3.jar
+curl -s -O https://repo1.maven.org/maven2/net/corda/corda-tools-network-bootstrapper/4.4/corda-tools-network-bootstrapper-4.3.jar
 
 echo "running bootstrapper (this may take a while)"
-docker run --mount type=bind,source="$(pwd)",target=/opt/app openjdk:8-jdk-slim java -jar /opt/app/corda-tools-network-bootstrapper-4.3.jar --dir /opt/app --copy-cordapps=Yes
+docker run --mount type=bind,source="$(pwd)",target=/opt/app openjdk:8-jdk-slim java -jar /opt/app/corda-tools-network-bootstrapper-4.4.jar --dir /opt/app --copy-cordapps=Yes
 
 if [ $? -ne 0 ]; then
   echo bootstrapping failed >&2
