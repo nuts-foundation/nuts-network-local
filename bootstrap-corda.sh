@@ -29,11 +29,23 @@ rm -rf dahmer
 rm -rf notary
 
 echo "download new cordapps of version $cordapp_version"
-curl -O -s "https://repo1.maven.org/maven2/nl/nuts/consent/cordapp/flows/$cordapp_version/flows-$cordapp_version.jar"
-curl -O -s "https://repo1.maven.org/maven2/nl/nuts/consent/cordapp/contract/$cordapp_version/contract-$cordapp_version.jar"
+curl -O -s -f "https://repo1.maven.org/maven2/nl/nuts/consent/cordapp/flows/$cordapp_version/flows-$cordapp_version.jar"
+if [ 0 -ne $? ]; then
+  echo "could not download flows-$cordapp_version.jar"
+  exit 1
+fi
+curl -O -s -f "https://repo1.maven.org/maven2/nl/nuts/consent/cordapp/contract/$cordapp_version/contract-$cordapp_version.jar"
+if [ 0 -ne $? ]; then
+  echo "could not download contract-$cordapp_version.jar"
+  exit 1
+fi
 
 echo downloading corda network boostrapper
-curl -s -O https://repo1.maven.org/maven2/net/corda/corda-tools-network-bootstrapper/4.4/corda-tools-network-bootstrapper-4.3.jar
+curl -s -O -f https://repo1.maven.org/maven2/net/corda/corda-tools-network-bootstrapper/4.4/corda-tools-network-bootstrapper-4.4.jar
+if [ 0 -ne $? ]; then
+  echo "could not download corda bootstrapper"
+  exit 1
+fi
 
 echo "running bootstrapper (this may take a while)"
 docker run --mount type=bind,source="$(pwd)",target=/opt/app openjdk:8-jdk-slim java -jar /opt/app/corda-tools-network-bootstrapper-4.4.jar --dir /opt/app --copy-cordapps=Yes
