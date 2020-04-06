@@ -7,36 +7,31 @@ Nuts local network
 
 .. _nuts-consent-local-development-docker:
 
-Running with docker
-*******************
+Running with docker-compose
+***************************
 
-This repo contains a set of properties, keys, config and other files for setting up a local development environment. This is all connected together with a single ``docker-compose.yml`` file. You'll need to have docker and java installed.
+This repo contains a set of properties, keys, config and other files for setting
+up a local development environment. This is all connected together with a single
+``docker-compose.yml`` file. You'll need to have docker and java installed.
 
-First get the Corda network bootstrapper tool from https://repo1.maven.org/maven2/net/corda/corda-tools-network-bootstrapper/4.3/
+For more extensive instructions, see the getting started guide in the docs:
+https://nuts-documentation.readthedocs.io/en/add-sso-rfc/pages/getting_started/local_network.html#setup-a-local-nuts-network .
 
-Generate corda nodes:
-
-.. code-block:: shell
-
-    cd nodes && java -jar corda-tools-network-bootstrapper-4.3.jar --dir . --copy-cordapps Yes
-
-More info on how to bootstrap a corda network: https://docs.corda.net/network-bootstrapper.html
-
-To start
+In order to set up the network, a few script are included. To bootstrap the Corda
+nodes and gernerate the network event run:
 
 .. code-block:: shell
 
-    docker-compose up -d -V
+    $ ./boostrap-corda.sh
+    $ ./setup-network-registry.sh
 
-``-d`` will run all containers detached. To view the logs:
+To start the full network
 
 .. code-block:: shell
 
-    docker-compose logs -f
+    $ ./start-network.sh
 
-Corda logs can also be viewed inside ``nodes/NODE/logs`` since ``nodes/NODE`` is mounted in the container.
-
-``-V`` will remount the volumes, this is needed when you change any of the properties files.
+Corda logs can be viewed inside ``nodes/NODE/logs`` since ``nodes/NODE`` is mounted in the container.
 
 All of the Nuts docker images are build directly from code on Docker Hub. To get the latest development images, use:
 
