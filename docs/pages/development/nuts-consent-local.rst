@@ -22,7 +22,7 @@ nodes and gernerate the network event run:
 
 .. code-block:: shell
 
-    $ ./boostrap-corda.sh
+    $ ./bootstrap-corda.sh
     $ ./setup-network-registry.sh
 
 To start the full network
