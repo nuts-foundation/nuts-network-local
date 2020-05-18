@@ -69,7 +69,7 @@ services:
     volumes:
       - "./config/dahmer/application.properties:/opt/nuts/application.properties"
   bundy-nuts-service-space:
-    image: nutsfoundation/nuts-service-space:release-0.13.2
+    image: nutsfoundation/nuts-service-space:release-0.13.7
     environment:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
     networks:
@@ -87,7 +87,7 @@ services:
       - "./nodes/bundy/sqlite:/opt/nuts/sqlite"
       - "./config/bundy/keys:/opt/nuts/keys"
   dahmer-nuts-service-space:
-    image: nutsfoundation/nuts-service-space:release-0.13.2
+    image: nutsfoundation/nuts-service-space:release-0.13.7
     environment:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
     networks:
