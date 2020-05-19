@@ -170,7 +170,7 @@ docker run \
 --env NUTS_CONFIGFILE=/opt/nuts/nuts.yaml \
 --env NUTS_MODE=cli \
 --network=nuts \
-nutsfoundation/nuts-service-space:release-0.13.7 registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_2_AGB} urn:oid:1.3.6.1.4.1.54851.2:demo-ehr "http://demo-ehr:8001" -p authorizationServerURL="http://dahmer-nuts-service-space:1323" \
+nutsfoundation/nuts-service-space:release-0.13.7 registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_2_AGB} urn:oid:1.3.6.1.4.1.54851.2:demo-ehr "http://demo-ehr:8001/external/patient" -p authorizationServerURL="http://dahmer-nuts-service-space:1323" \
 > /dev/null
 
 docker run \
@@ -204,7 +204,7 @@ docker run \
 --env NUTS_CONFIGFILE=/opt/nuts/nuts.yaml \
 --env NUTS_MODE=cli \
 --network=nuts \
-nutsfoundation/nuts-service-space:release-0.13.7 registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_3_AGB} urn:oid:1.3.6.1.4.1.54851.2:demo-ehr "http://demo-ehr:8002" -p authorizationServerURL="http://dahmer-nuts-service-space:1323" \
+nutsfoundation/nuts-service-space:release-0.13.7 registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_3_AGB} urn:oid:1.3.6.1.4.1.54851.2:demo-ehr "http://demo-ehr:8002/external/patient" -p authorizationServerURL="http://dahmer-nuts-service-space:1323" \
 > /dev/null
 
 docker run \
