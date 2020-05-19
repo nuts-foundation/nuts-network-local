@@ -47,6 +47,8 @@ done
 
 if [ $healthy -eq 0 ]; then
   echo containers took too much time to start
+  echo try starting them by hand and check the output: 'docker-compose up dahmer-nuts-service-space bundy-nuts-service-space'
+  docker-compose down
   exit 1
 fi
 
@@ -71,7 +73,7 @@ docker run \
 --env NUTS_CONFIGFILE=/opt/nuts/nuts.yaml \
 --env NUTS_MODE=cli \
 --network=nuts \
-nutsfoundation/nuts-service-space:sso registry --registry.address=bundy-nuts-service-space:1323 register-vendor urn:oid:1.3.6.1.4.1.54851.4:00000001 "${VENDOR_FIRST}" \
+nutsfoundation/nuts-service-space:release-0.13.7 registry --registry.address=bundy-nuts-service-space:1323 register-vendor urn:oid:1.3.6.1.4.1.54851.4:00000001 "${VENDOR_FIRST}" \
 > /dev/null
 
 # Register 2nd vendor
@@ -84,7 +86,7 @@ docker run \
 --env NUTS_CONFIGFILE=/opt/nuts/nuts.yaml \
 --env NUTS_MODE=cli \
 --network=nuts \
-nutsfoundation/nuts-service-space:sso registry --registry.address=dahmer-nuts-service-space:1323 register-vendor urn:oid:1.3.6.1.4.1.54851.4:00000002 "${VENDOR_SECOND}" \
+nutsfoundation/nuts-service-space:release-0.13.7 registry --registry.address=dahmer-nuts-service-space:1323 register-vendor urn:oid:1.3.6.1.4.1.54851.4:00000002 "${VENDOR_SECOND}" \
 > /dev/null
 
 echo adding "${ORGANIZATION_1_NAME}" to ${VENDOR_FIRST}
@@ -96,7 +98,7 @@ docker run \
 --env NUTS_CONFIGFILE=/opt/nuts/nuts.yaml \
 --env NUTS_MODE=cli \
 --network=nuts \
-nutsfoundation/nuts-service-space:sso registry --registry.address=bundy-nuts-service-space:1323 vendor-claim urn:oid:1.3.6.1.4.1.54851.4:00000001 urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_1_AGB} "${ORGANIZATION_1_NAME}" \
+nutsfoundation/nuts-service-space:release-0.13.7 registry --registry.address=bundy-nuts-service-space:1323 vendor-claim urn:oid:1.3.6.1.4.1.54851.4:00000001 urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_1_AGB} "${ORGANIZATION_1_NAME}" \
 > /dev/null
 
 echo adding "${ORGANIZATION_2_NAME}" to ${VENDOR_SECOND}
@@ -108,7 +110,7 @@ docker run \
 --env NUTS_CONFIGFILE=/opt/nuts/nuts.yaml \
 --env NUTS_MODE=cli \
 --network=nuts \
-nutsfoundation/nuts-service-space:sso registry --registry.address=dahmer-nuts-service-space:1323 vendor-claim urn:oid:1.3.6.1.4.1.54851.4:00000002 urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_2_AGB} "${ORGANIZATION_2_NAME}" \
+nutsfoundation/nuts-service-space:release-0.13.7 registry --registry.address=dahmer-nuts-service-space:1323 vendor-claim urn:oid:1.3.6.1.4.1.54851.4:00000002 urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_2_AGB} "${ORGANIZATION_2_NAME}" \
 > /dev/null
 
 echo adding "${ORGANIZATION_3_NAME}" to ${VENDOR_SECOND}
@@ -120,7 +122,7 @@ docker run \
 --env NUTS_CONFIGFILE=/opt/nuts/nuts.yaml \
 --env NUTS_MODE=cli \
 --network=nuts \
-nutsfoundation/nuts-service-space:sso registry --registry.address=dahmer-nuts-service-space:1323 vendor-claim urn:oid:1.3.6.1.4.1.54851.4:00000002 urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_3_AGB} "${ORGANIZATION_3_NAME}" \
+nutsfoundation/nuts-service-space:release-0.13.7 registry --registry.address=dahmer-nuts-service-space:1323 vendor-claim urn:oid:1.3.6.1.4.1.54851.4:00000002 urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_3_AGB} "${ORGANIZATION_3_NAME}" \
 > /dev/null
 
 
@@ -134,7 +136,7 @@ docker run \
 --env NUTS_CONFIGFILE=/opt/nuts/nuts.yaml \
 --env NUTS_MODE=cli \
 --network=nuts \
-nutsfoundation/nuts-service-space:sso registry --registry.address=bundy-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_1_AGB} urn:oid:1.3.6.1.4.1.54851.2:demo-ehr "http://demo-ehr:8000" -p authorizationServerURL="http://bundy-nuts-service-space:1323" \
+nutsfoundation/nuts-service-space:release-0.13.7 registry --registry.address=bundy-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_1_AGB} urn:oid:1.3.6.1.4.1.54851.2:demo-ehr "http://demo-ehr:8000" -p authorizationServerURL="http://bundy-nuts-service-space:1323" \
 > /dev/null
 
 docker run \
@@ -145,7 +147,7 @@ docker run \
 --env NUTS_CONFIGFILE=/opt/nuts/nuts.yaml \
 --env NUTS_MODE=cli \
 --network=nuts \
-nutsfoundation/nuts-service-space:sso registry --registry.address=bundy-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_1_AGB} urn:nuts:endpoint:consent "tcp://bundy:7886" --id urn:ietf:rfc:1779:O=Nuts,C=NL,L=Groenlo,CN=nuts_corda_development_bundy \
+nutsfoundation/nuts-service-space:release-0.13.7 registry --registry.address=bundy-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_1_AGB} urn:nuts:endpoint:consent "tcp://bundy:7886" --id urn:ietf:rfc:1779:O=Nuts,C=NL,L=Groenlo,CN=nuts_corda_development_bundy \
 > /dev/null
 
 docker run \
@@ -156,7 +158,7 @@ docker run \
 --env NUTS_CONFIGFILE=/opt/nuts/nuts.yaml \
 --env NUTS_MODE=cli \
 --network=nuts \
-nutsfoundation/nuts-service-space:sso registry --registry.address=bundy-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_1_AGB} urn:oid:1.3.6.1.4.1.54851.1:nuts-sso "http://localhost:8000" -p authorizationServerURL="http://bundy-nuts-service-space:1323" \
+nutsfoundation/nuts-service-space:release-0.13.7 registry --registry.address=bundy-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_1_AGB} urn:oid:1.3.6.1.4.1.54851.1:nuts-sso "http://localhost:8000" -p authorizationServerURL="http://bundy-nuts-service-space:1323" \
 > /dev/null
 
 echo adding endpoints for ${ORGANIZATION_2_NAME}
@@ -168,7 +170,7 @@ docker run \
 --env NUTS_CONFIGFILE=/opt/nuts/nuts.yaml \
 --env NUTS_MODE=cli \
 --network=nuts \
-nutsfoundation/nuts-service-space:sso registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_2_AGB} urn:oid:1.3.6.1.4.1.54851.2:demo-ehr "http://demo-ehr:8001" -p authorizationServerURL="http://dahmer-nuts-service-space:1323" \
+nutsfoundation/nuts-service-space:release-0.13.7 registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_2_AGB} urn:oid:1.3.6.1.4.1.54851.2:demo-ehr "http://demo-ehr:8001" -p authorizationServerURL="http://dahmer-nuts-service-space:1323" \
 > /dev/null
 
 docker run \
@@ -179,7 +181,7 @@ docker run \
 --env NUTS_CONFIGFILE=/opt/nuts/nuts.yaml \
 --env NUTS_MODE=cli \
 --network=nuts \
-nutsfoundation/nuts-service-space:sso registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_2_AGB} urn:nuts:endpoint:consent "tcp://dahmer:7886" --id urn:ietf:rfc:1779:O=Nuts,C=NL,L=Groenlo,CN=nuts_corda_development_dahmer \
+nutsfoundation/nuts-service-space:release-0.13.7 registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_2_AGB} urn:nuts:endpoint:consent "tcp://dahmer:7886" --id urn:ietf:rfc:1779:O=Nuts,C=NL,L=Groenlo,CN=nuts_corda_development_dahmer \
 > /dev/null
 
 docker run \
@@ -190,7 +192,7 @@ docker run \
 --env NUTS_CONFIGFILE=/opt/nuts/nuts.yaml \
 --env NUTS_MODE=cli \
 --network=nuts \
-nutsfoundation/nuts-service-space:sso registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_2_AGB} urn:oid:1.3.6.1.4.1.54851.1:nuts-sso "http://localhost:8001" -p authorizationServerURL="http://dahmer-nuts-service-space:1323" \
+nutsfoundation/nuts-service-space:release-0.13.7 registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_2_AGB} urn:oid:1.3.6.1.4.1.54851.1:nuts-sso "http://localhost:8001" -p authorizationServerURL="http://dahmer-nuts-service-space:1323" \
 > /dev/null
 
 echo adding endpoints for ${ORGANIZATION_3_NAME}
@@ -202,7 +204,7 @@ docker run \
 --env NUTS_CONFIGFILE=/opt/nuts/nuts.yaml \
 --env NUTS_MODE=cli \
 --network=nuts \
-nutsfoundation/nuts-service-space:sso registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_3_AGB} urn:oid:1.3.6.1.4.1.54851.2:demo-ehr "http://demo-ehr:8002" -p authorizationServerURL="http://dahmer-nuts-service-space:1323" \
+nutsfoundation/nuts-service-space:release-0.13.7 registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_3_AGB} urn:oid:1.3.6.1.4.1.54851.2:demo-ehr "http://demo-ehr:8002" -p authorizationServerURL="http://dahmer-nuts-service-space:1323" \
 > /dev/null
 
 docker run \
@@ -213,7 +215,7 @@ docker run \
 --env NUTS_CONFIGFILE=/opt/nuts/nuts.yaml \
 --env NUTS_MODE=cli \
 --network=nuts \
-nutsfoundation/nuts-service-space:sso registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_3_AGB} urn:nuts:endpoint:consent "tcp://dahmer:7886" --id urn:ietf:rfc:1779:O=Nuts,C=NL,L=Groenlo,CN=nuts_corda_development_dahmer \
+nutsfoundation/nuts-service-space:release-0.13.7 registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_3_AGB} urn:nuts:endpoint:consent "tcp://dahmer:7886" --id urn:ietf:rfc:1779:O=Nuts,C=NL,L=Groenlo,CN=nuts_corda_development_dahmer \
 > /dev/null
 
 docker run \
@@ -224,5 +226,5 @@ docker run \
 --env NUTS_CONFIGFILE=/opt/nuts/nuts.yaml \
 --env NUTS_MODE=cli \
 --network=nuts \
-nutsfoundation/nuts-service-space:sso registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_3_AGB} urn:oid:1.3.6.1.4.1.54851.1:nuts-sso "http://localhost:8002" -p authorizationServerURL="http://dahmer-nuts-service-space:1323" \
+nutsfoundation/nuts-service-space:release-0.13.7 registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_3_AGB} urn:oid:1.3.6.1.4.1.54851.1:nuts-sso "http://localhost:8002" -p authorizationServerURL="http://dahmer-nuts-service-space:1323" \
 > /dev/null
