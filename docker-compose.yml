@@ -20,17 +20,21 @@ services:
       - "8000:8000"
       - "8001:8001"
       - "8002:8002"
+      # Node Debugger ports:
+      - "9229:9229"
+      - "9230:9230"
+      - "9231:9231"
     volumes:
       - "./config/demo-ehr/:/app/config/"
   notary:
-    image: nutsfoundation/nuts-consent-cordapp:release-0.13.0-dev
+    image: nutsfoundation/nuts-consent-cordapp:release-0.14.0
     networks:
       - nuts
     volumes:
       - "./nodes/notary/:/opt/nuts/"
     command: "java -jar /opt/nuts/corda.jar --network-root-truststore-password=changeit --log-to-console"
   bundy:
-    image: nutsfoundation/nuts-consent-cordapp:release-0.13.0-dev
+    image: nutsfoundation/nuts-consent-cordapp:release-0.14.0
     networks:
       - nuts
     ports:
@@ -40,7 +44,7 @@ services:
 #    command: "-Dlog4j.configurationFile=sql.xml -jar /opt/nuts/corda.jar --network-root-truststore-password=changeit --log-to-console"
     command: "java -jar /opt/nuts/corda.jar --network-root-truststore-password=changeit --log-to-console"
   dahmer:
-    image: nutsfoundation/nuts-consent-cordapp:release-0.13.0-dev
+    image: nutsfoundation/nuts-consent-cordapp:release-0.14.0
     networks:
       - nuts
     ports:
@@ -49,7 +53,7 @@ services:
       - "./nodes/dahmer/:/opt/nuts/"
     command: "java -jar /opt/nuts/corda.jar --network-root-truststore-password=changeit --log-to-console"
   bundy-bridge:
-    image: nutsfoundation/nuts-consent-bridge:release-0.13.1-dev
+    image: nutsfoundation/nuts-consent-bridge:release-0.14.0-dev
     environment:
       SPRING_SERVER_ADDRESS: bundy-bridge
     networks:
@@ -59,7 +63,7 @@ services:
     volumes:
       - "./config/bundy/application.properties:/opt/nuts/application.properties"
   dahmer-bridge:
-    image: nutsfoundation/nuts-consent-bridge:release-0.13.1-dev
+    image: nutsfoundation/nuts-consent-bridge:release-0.14.0-dev
     environment:
       SPRING_SERVER_ADDRESS: dahmer-bridge
     networks:
@@ -69,7 +73,7 @@ services:
     volumes:
       - "./config/dahmer/application.properties:/opt/nuts/application.properties"
   bundy-nuts-service-space:
-    image: nutsfoundation/nuts-service-space:release-0.13.7
+    image: nutsfoundation/nuts-service-space:release-0.14.1
     environment:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
     networks:
@@ -79,7 +83,6 @@ services:
     ports:
       - "11323:1323"
       - "11324:4222"
-
     volumes:
       - "./config/bundy/nuts.yaml:/opt/nuts/nuts.yaml"
       - "./config/registry:/opt/nuts/registry"
@@ -87,7 +90,7 @@ services:
       - "./nodes/bundy/sqlite:/opt/nuts/sqlite"
       - "./config/bundy/keys:/opt/nuts/keys"
   dahmer-nuts-service-space:
-    image: nutsfoundation/nuts-service-space:release-0.13.7
+    image: nutsfoundation/nuts-service-space:release-0.14.1
     environment:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
     networks:

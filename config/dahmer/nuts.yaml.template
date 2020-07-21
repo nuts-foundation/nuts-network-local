@@ -14,8 +14,11 @@ registry:
   datadir: /opt/nuts/registry
 events:
   zmqAddress: tcp://dahmer-bridge:5563
-  connectionstring: file:eventstore.db
+  connectionstring: file:/opt/nuts/sqlite/eventstore.db
 cbridge:
   address: http://dahmer-bridge:8080
 cstore:
-  connectionstring: /opt/nuts/sqlite/sqlite.db
+  connectionstring: file:/opt/nuts/sqlite/consents.db
+network:
+  publicAddr: dahmer-nuts-service-space:5555
+  storageConnectionString: file:/opt/nuts/sqlite/network.db

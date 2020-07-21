@@ -37,6 +37,7 @@ _build
 nodes/bundy
 nodes/dahmer
 nodes/notary
+nodes/*.jar
 .cache
 
 # too large for github
