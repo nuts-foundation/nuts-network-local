@@ -1,5 +1,5 @@
 #!/bin/bash
-cordapp_version=0.13.0
+cordapp_version=0.14.0
 
 if ! [ -x "$(command -v docker)" ]; then
   echo 'Error: docker is not installed. This local network consists of a lot of docker containers.' >&2
