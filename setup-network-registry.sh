@@ -63,13 +63,21 @@ ORGANIZATION_3_AGB=43215678
 echo registering new vendors
 
 #
+# NOTICE: In 0.14 the registry defaults to 'server' mode while this should've been none, since it should derive it from
+# the global mode configuration. That means even when the CLI is used (with NUTS_MODE=cli) the registry is started in
+# server mode, causing errors. Workaround is to override this by setting NUTS_REGISTRY_MODE=client
+# This is fixed for 0.15 so this environment variable set in the commands below can be removed.
+#
+
+#
 # Register 1st vendor
 #
 read -p "Enter first Vendor name: " VENDOR_FIRST
 docker run \
   --env NUTS_MODE=cli \
+  --env NUTS_REGISTRY_MODE=client \
   --network=nuts \
-  $SERVICE_SPACE_IMAGE registry --registry.address=bundy-nuts-service-space:1323 register-vendor urn:oid:1.3.6.1.4.1.54851.4:00000001 "${VENDOR_FIRST}" \
+  $SERVICE_SPACE_IMAGE registry --registry.address=bundy-nuts-service-space:1323 register-vendor "${VENDOR_FIRST}" \
   > /dev/null
 
 #
@@ -78,8 +86,9 @@ docker run \
 read -p "Enter second vendor name: " VENDOR_SECOND
 docker run \
   --env NUTS_MODE=cli \
+  --env NUTS_REGISTRY_MODE=client \
   --network=nuts \
-  $SERVICE_SPACE_IMAGE registry --registry.address=dahmer-nuts-service-space:1323 register-vendor urn:oid:1.3.6.1.4.1.54851.4:00000002 "${VENDOR_SECOND}" \
+  $SERVICE_SPACE_IMAGE registry --registry.address=dahmer-nuts-service-space:1323 register-vendor "${VENDOR_SECOND}" \
   > /dev/null
 
 #
@@ -88,6 +97,7 @@ docker run \
 echo adding "${ORGANIZATION_1_NAME}" to ${VENDOR_FIRST}
 docker run \
   --env NUTS_MODE=cli \
+  --env NUTS_REGISTRY_MODE=client \
   --network=nuts \
   $SERVICE_SPACE_IMAGE registry --registry.address=bundy-nuts-service-space:1323 vendor-claim urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_1_AGB} "${ORGANIZATION_1_NAME}" \
   > /dev/null
@@ -95,6 +105,7 @@ docker run \
 echo adding "${ORGANIZATION_2_NAME}" to ${VENDOR_SECOND}
 docker run \
   --env NUTS_MODE=cli \
+  --env NUTS_REGISTRY_MODE=client \
   --network=nuts \
   $SERVICE_SPACE_IMAGE registry --registry.address=dahmer-nuts-service-space:1323 vendor-claim urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_2_AGB} "${ORGANIZATION_2_NAME}" \
   > /dev/null
@@ -102,6 +113,7 @@ docker run \
 echo adding "${ORGANIZATION_3_NAME}" to ${VENDOR_SECOND}
 docker run \
   --env NUTS_MODE=cli \
+  --env NUTS_REGISTRY_MODE=client \
   --network=nuts \
   $SERVICE_SPACE_IMAGE registry --registry.address=dahmer-nuts-service-space:1323 vendor-claim urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_3_AGB} "${ORGANIZATION_3_NAME}" \
   > /dev/null
@@ -112,18 +124,21 @@ docker run \
 echo adding endpoints for ${ORGANIZATION_1_NAME}
 docker run \
   --env NUTS_MODE=cli \
+  --env NUTS_REGISTRY_MODE=client \
   --network=nuts \
   $SERVICE_SPACE_IMAGE registry --registry.address=bundy-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_1_AGB} urn:oid:1.3.6.1.4.1.54851.2:demo-ehr "http://demo-ehr:8000" -p authorizationServerURL="http://bundy-nuts-service-space:1323" \
   > /dev/null
 
 docker run \
   --env NUTS_MODE=cli \
+  --env NUTS_REGISTRY_MODE=client \
   --network=nuts \
   $SERVICE_SPACE_IMAGE registry --registry.address=bundy-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_1_AGB} urn:nuts:endpoint:consent "tcp://bundy:7886" --id urn:ietf:rfc:1779:O=Nuts,C=NL,L=Groenlo,CN=nuts_corda_development_bundy \
   > /dev/null
 
 docker run \
   --env NUTS_MODE=cli \
+  --env NUTS_REGISTRY_MODE=client \
   --network=nuts \
   $SERVICE_SPACE_IMAGE registry --registry.address=bundy-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_1_AGB} urn:oid:1.3.6.1.4.1.54851.1:nuts-sso "http://localhost:8000" -p authorizationServerURL="http://bundy-nuts-service-space:1323" \
   > /dev/null
@@ -131,18 +146,21 @@ docker run \
 echo adding endpoints for ${ORGANIZATION_2_NAME}
 docker run \
 --env NUTS_MODE=cli \
+--env NUTS_REGISTRY_MODE=client \
 --network=nuts \
 $SERVICE_SPACE_IMAGE registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_2_AGB} urn:oid:1.3.6.1.4.1.54851.2:demo-ehr "http://demo-ehr:8001" -p authorizationServerURL="http://dahmer-nuts-service-space:1323" \
 > /dev/null
 
 docker run \
 --env NUTS_MODE=cli \
+--env NUTS_REGISTRY_MODE=client \
 --network=nuts \
 $SERVICE_SPACE_IMAGE registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_2_AGB} urn:nuts:endpoint:consent "tcp://dahmer:7886" --id urn:ietf:rfc:1779:O=Nuts,C=NL,L=Groenlo,CN=nuts_corda_development_dahmer \
 > /dev/null
 
 docker run \
 --env NUTS_MODE=cli \
+--env NUTS_REGISTRY_MODE=client \
 --network=nuts \
 $SERVICE_SPACE_IMAGE registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_2_AGB} urn:oid:1.3.6.1.4.1.54851.1:nuts-sso "http://localhost:8001" -p authorizationServerURL="http://dahmer-nuts-service-space:1323" \
 > /dev/null
@@ -150,18 +168,21 @@ $SERVICE_SPACE_IMAGE registry --registry.address=dahmer-nuts-service-space:1323 
 echo adding endpoints for ${ORGANIZATION_3_NAME}
 docker run \
 --env NUTS_MODE=cli \
+--env NUTS_REGISTRY_MODE=client \
 --network=nuts \
 $SERVICE_SPACE_IMAGE registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_3_AGB} urn:oid:1.3.6.1.4.1.54851.2:demo-ehr "http://demo-ehr:8002" -p authorizationServerURL="http://dahmer-nuts-service-space:1323" \
 > /dev/null
 
 docker run \
 --env NUTS_MODE=cli \
+--env NUTS_REGISTRY_MODE=client \
 --network=nuts \
 $SERVICE_SPACE_IMAGE registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_3_AGB} urn:nuts:endpoint:consent "tcp://dahmer:7886" --id urn:ietf:rfc:1779:O=Nuts,C=NL,L=Groenlo,CN=nuts_corda_development_dahmer \
 > /dev/null
 
 docker run \
 --env NUTS_MODE=cli \
+--env NUTS_REGISTRY_MODE=client \
 --network=nuts \
 $SERVICE_SPACE_IMAGE registry --registry.address=dahmer-nuts-service-space:1323 register-endpoint urn:oid:2.16.840.1.113883.2.4.6.1:${ORGANIZATION_3_AGB} urn:oid:1.3.6.1.4.1.54851.1:nuts-sso "http://localhost:8002" -p authorizationServerURL="http://dahmer-nuts-service-space:1323" \
 > /dev/null
