@@ -1,9 +1,21 @@
 version: "3.7"
 services:
-#  discovery:
-#    image: nutsfoundation/nuts-discovery:release-0.9.0-dev
-#    networks:
-#      - nuts
+  discovery:
+    image: nutsfoundation/nuts-discovery:latest
+    # Make healthcheck run more often so we don't have to wait so long
+    healthcheck:
+      start_period: 5s
+      interval: 1s
+      retries: 30
+    networks:
+      - nuts
+    ports:
+      - "8081:8080"
+    environment:
+      NUTS_DISCOVERY_CONTRACTHASHES: 6ACDE387C0DF227A6C4ED77407B58E9103C2EA1A66796CE37BC497931F4E1631
+      NUTS_DISCOVERY_FLOWHASHES: 5F60201E5F4E698300F3BAF94DAD1517A1314B4F406FD90610A78D798FFE972D
+    volumes:
+      - "./config/network-authority/keys:/opt/nuts/discovery/keys:ro"
   redis:
     image: redis
     networks:
@@ -73,7 +85,12 @@ services:
     volumes:
       - "./config/dahmer/application.properties:/opt/nuts/application.properties"
   bundy-nuts-service-space:
-    image: nutsfoundation/nuts-service-space:release-0.14.1
+    image: nutsfoundation/nuts-service-space:latest
+    # Make healthcheck run more often so we don't have to wait so long
+    healthcheck:
+      start_period: 5s
+      interval: 1s
+      retries: 30
     environment:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
     networks:
@@ -90,7 +107,12 @@ services:
       - "./nodes/bundy/sqlite:/opt/nuts/sqlite"
       - "./config/bundy/keys:/opt/nuts/keys"
   dahmer-nuts-service-space:
-    image: nutsfoundation/nuts-service-space:release-0.14.1
+    image: nutsfoundation/nuts-service-space:latest
+    # Make healthcheck run more often so we don't have to wait so long
+    healthcheck:
+      start_period: 5s
+      interval: 1s
+      retries: 30
     environment:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
     networks:
