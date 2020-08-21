@@ -1,5 +1,7 @@
 #!/bin/bash
-docker_cmd="docker-compose up"
+# We need to stop any running containers first because nuts.yaml is modified in this script
+docker_stop_cmd="docker-compose stop"
+docker_start_cmd="docker-compose up"
 
 if ! [ -x "$(command -v docker-compose)" ]; then
   echo 'Error: docker-compose is not installed. This local network consists of a lot of docker containers.' >&2
@@ -86,4 +88,5 @@ export PUBLIC_URL=$dahmer_public_url
 envsubst < "./config/dahmer/nuts.yaml.template" > "./config/dahmer/nuts.yaml" 2>/dev/null
 
 echo starting containers
-$docker_cmd
+$docker_stop_cmd
+$docker_start_cmd
