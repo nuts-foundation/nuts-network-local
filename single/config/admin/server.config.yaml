@@ -1,0 +1,7 @@
+credentials:
+  username: "demo@nuts.nl"
+  password: "demo"
+port: 1303
+dbfile: /app/data/registry-admin.db
+customersfile: /app/data/customers.json
+nutsnodeaddr: http://node:1323

@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+  node:
+    image: nutsfoundation/nuts-node:master
+    environment:
+      NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
+    ports:
+      - 1323:1323
+      - 5555:5555
+    healthcheck:
+      test: "curl -f http://localhost:1323/status || exit 1"
+    volumes:
+      - "./config/node/nuts.yaml:/opt/nuts/nuts.yaml"
+      - "./data/node:/opt/nuts/data"
+  admin:
+    image: nutsfoundation/nuts-registry-admin-demo:master
+    ports:
+      - 1303:1303
+    healthcheck:
+      test: "curl -f http://localhost:1303/status || exit 1"
+    volumes:
+      - "./config/admin/server.config.yaml:/app/server.config.yaml"
+      - "./data/admin:/app/data"
