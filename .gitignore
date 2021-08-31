@@ -15,7 +15,4 @@
 *.iws
 
 ## Nuts specific
-crypto
-irma
-network
-vcr
+data
