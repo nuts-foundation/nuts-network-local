@@ -41,3 +41,35 @@ services:
     volumes:
       - "./two/config/admin/server.config.yaml:/app/server.config.yaml"
       - "./two/data/admin:/app/data"
+  demo-one:
+    image: nutsfoundation/nuts-demo-ehr:main
+    ports:
+      - 1304:1304
+    healthcheck:
+      test: "curl -f http://localhost:1304/status | exit 1"
+    volumes:
+      - "./one/config/demo/server.config.yaml:/app/server.config.yaml"
+      - "./one/data/admin/customers.json:/app/customers.json:ro"
+      - "./one/data/demo:/app/data"
+  hapi-one:
+    image: hapiproject/hapi:v5.4.1
+    expose:
+      - 8080
+    volumes:
+      - "./one/data/hapi:/usr/local/tomcat/target"
+  demo-two:
+    image: nutsfoundation/nuts-demo-ehr:main
+    ports:
+      - 2304:1304
+    healthcheck:
+      test: "curl -f http://localhost:1304/status | exit 1"
+    volumes:
+      - "./two/config/demo/server.config.yaml:/app/server.config.yaml"
+      - "./two/data/admin/customers.json:/app/customers.json:ro"
+      - "./two/data/demo:/app/data"
+  hapi-two:
+    image: hapiproject/hapi:v5.4.1
+    expose:
+      - 8080
+    volumes:
+      - "./two/data/hapi:/usr/local/tomcat/target"
