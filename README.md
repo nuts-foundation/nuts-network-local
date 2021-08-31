@@ -34,7 +34,7 @@ docker-compose down
 
 To reset all data in the network, remove:
 
-```shell
+```
 data/admin/*
 data/node/crypto/*
 data/node/irma/*
