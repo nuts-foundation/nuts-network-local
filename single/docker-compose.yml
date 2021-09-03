@@ -33,6 +33,9 @@ services:
       - "./data/demo:/app/data"
   hapi:
     image: hapiproject/hapi:v5.4.1
+    environment:
+      hapi.fhir.fhir_version: DSTU3
+      hapi.fhir.partitioning.allow_references_across_partitions: "false"
     expose:
       - 8080
     volumes:

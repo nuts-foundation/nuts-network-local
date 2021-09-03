@@ -6,4 +6,7 @@ dbfile: /app/data/registry-admin.db
 dbConnectionString : file:/app/data/ehr.db
 customersfile: /app/customers.json
 nutsnodeaddr: http://node:1323
-fhirserveraddr: http://hapi:8080/fhir
+fhir:
+  server:
+    type: hapi
+    address: http://hapi:8080/fhir
