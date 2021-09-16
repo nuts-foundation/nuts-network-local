@@ -8,5 +8,5 @@ customersfile: /app/customers.json
 nutsnodeaddr: http://node-two:1323
 fhir:
   server:
-    type: hapi
+    type: hapi-multi-tenant
     address: http://hapi-two:8080/fhir
