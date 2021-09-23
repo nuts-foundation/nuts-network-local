@@ -4,7 +4,6 @@ services:
     image: nutsfoundation/nuts-node:master
     environment:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
-      NUTS_NETWORK_BOOTSTRAPNODES: ""
     ports:
       - "127.0.0.1:1323:1323"
       - "5555:5555"
