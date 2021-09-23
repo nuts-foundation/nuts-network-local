@@ -5,8 +5,8 @@ services:
     environment:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
     ports:
-      - "127.0.0.1:1323:1323"
-      - "127.0.0.1:5555:5555"
+      - "1323:1323"
+      - "5555:5555"
     healthcheck:
       test: "curl -f http://127.0.0.1:1323/status || exit 1"
     volumes:
@@ -24,7 +24,7 @@ services:
   demo:
     image: nutsfoundation/nuts-demo-ehr:main
     ports:
-      - "127.0.0.1:1304:1304"
+      - "1304:1304"
     healthcheck:
       test: "curl -f http://127.0.0.1:1304/status | exit 1"
     volumes:
