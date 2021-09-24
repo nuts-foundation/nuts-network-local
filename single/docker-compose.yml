@@ -16,8 +16,6 @@ services:
     image: nutsfoundation/nuts-registry-admin-demo:master
     ports:
       - "127.0.0.1:1303:1303"
-    healthcheck:
-      test: "curl -f http://127.0.0.1:1303/status || exit 1"
     volumes:
       - "./config/admin/server.config.yaml:/app/server.config.yaml"
       - "./data/admin:/app/data"
@@ -25,8 +23,6 @@ services:
     image: nutsfoundation/nuts-demo-ehr:main
     ports:
       - "1304:1304"
-    healthcheck:
-      test: "curl -f http://127.0.0.1:1304/status | exit 1"
     volumes:
       - "./config/demo/server.config.yaml:/app/server.config.yaml"
       - "./data/admin/customers.json:/app/customers.json:ro"
