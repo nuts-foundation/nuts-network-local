@@ -7,7 +7,7 @@ http:
 auth:
   irma:
     autoupdateschemas: false
-#verbosity: debug
+verbosity: debug
 network:
   enabletls: false
   bootstrapnodes:
@@ -15,4 +15,4 @@ network:
     - "node2:5555"
     - "node3:5555"
     - "node4:5555"
-    - "node5:5555"
+#    - "node5:5555"

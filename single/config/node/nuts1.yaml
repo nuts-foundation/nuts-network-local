@@ -11,7 +11,7 @@ auth:
 network:
   enabletls: false
   bootstrapnodes:
-    - "node1:5555"
+#    - "node1:5555"
     - "node2:5555"
     - "node3:5555"
     - "node4:5555"
