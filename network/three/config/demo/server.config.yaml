@@ -1,0 +1,12 @@
+credentials:
+  username: "demo@nuts.nl"
+  password: "demo"
+port: 1304
+dbfile: /app/data/registry-admin.db
+dbConnectionString : file:/app/data/ehr.db
+customersfile: /app/customers.json
+nutsnodeaddr: http://node-two:1323
+fhir:
+  server:
+    type: hapi-multi-tenant
+    address: http://hapi-three:8080/fhir
