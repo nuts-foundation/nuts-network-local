@@ -11,8 +11,6 @@ services:
     ports:
       - 1323:1323
       - 5555:5555
-    healthcheck:
-      test: "curl -f http://localhost:1323/status || exit 1"
     volumes:
       - "./one/config/node/nuts.yaml:/opt/nuts/nuts.yaml"
       - "./one/data/node:/opt/nuts/data"
@@ -25,8 +23,6 @@ services:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
     ports:
       - 2323:1323
-    healthcheck:
-      test: "curl -f http://localhost:1323/status || exit 1"
     volumes:
       - "./two/config/node/nuts.yaml:/opt/nuts/nuts.yaml"
       - "./two/data/node:/opt/nuts/data"
@@ -38,8 +34,6 @@ services:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
     ports:
       - 3323:1323
-    healthcheck:
-      test: "curl -f http://localhost:1323/status || exit 1"
     volumes:
       - "./three/config/node/nuts.yaml:/opt/nuts/nuts.yaml"
       - "./three/data/node:/opt/nuts/data"
@@ -82,8 +76,6 @@ services:
     image: nutsfoundation/nuts-demo-ehr:main
     ports:
       - 1304:1304
-    healthcheck:
-      test: "curl -f http://localhost:1304/status | exit 1"
     volumes:
       - "./one/config/demo/server.config.yaml:/app/server.config.yaml"
       - "./one/data/admin/customers.json:/app/customers.json:ro"
@@ -108,8 +100,6 @@ services:
     image: nutsfoundation/nuts-demo-ehr:main
     ports:
       - 2304:1304
-    healthcheck:
-      test: "curl -f http://localhost:1304/status | exit 1"
     volumes:
       - "./two/config/demo/server.config.yaml:/app/server.config.yaml"
       - "./two/data/admin/customers.json:/app/customers.json:ro"
@@ -134,8 +124,6 @@ services:
     image: nutsfoundation/nuts-demo-ehr:main
     ports:
       - 3304:1304
-    healthcheck:
-      test: "curl -f http://localhost:1304/status | exit 1"
     volumes:
       - "./three/config/demo/server.config.yaml:/app/server.config.yaml"
       - "./three/data/admin/customers.json:/app/customers.json:ro"
