@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3.9"
 services:
   node-one:
     profiles:
@@ -98,6 +98,8 @@ services:
       - hapi-one
       - node-one
   hapi-one:
+    profiles:
+      - with-demo-one
     image: hapiproject/hapi:v5.4.1
     environment:
       hapi.fhir.fhir_version: DSTU3
@@ -122,6 +124,8 @@ services:
       - hapi-two
       - node-two
   hapi-two:
+    profiles:
+      - with-demo-two
     image: hapiproject/hapi:v5.4.1
     environment:
       hapi.fhir.fhir_version: DSTU3
@@ -146,6 +150,8 @@ services:
       - hapi-three
       - node-three
   hapi-three:
+    profiles:
+      - with-demo-three
     image: hapiproject/hapi:v5.4.1
     environment:
       hapi.fhir.fhir_version: DSTU3
