@@ -49,8 +49,6 @@ services:
     image: nutsfoundation/nuts-registry-admin-demo:master
     ports:
       - 1303:1303
-    healthcheck:
-      test: "curl -f http://localhost:1303/status || exit 1"
     volumes:
       - "./one/config/admin/server.config.yaml:/app/server.config.yaml"
       - "./one/data/admin:/app/data"
@@ -62,8 +60,6 @@ services:
     image: nutsfoundation/nuts-registry-admin-demo:master
     ports:
       - 2303:1303
-    healthcheck:
-      test: "curl -f http://localhost:1303/status || exit 1"
     volumes:
       - "./two/config/admin/server.config.yaml:/app/server.config.yaml"
       - "./two/data/admin:/app/data"
@@ -75,11 +71,9 @@ services:
     image: nutsfoundation/nuts-registry-admin-demo:master
     ports:
       - 3303:1303
-    healthcheck:
-      test: "curl -f http://localhost:1303/status || exit 1"
     volumes:
-      - "./two/config/admin/server.config.yaml:/app/server.config.yaml"
-      - "./two/data/admin:/app/data"
+      - "./three/config/admin/server.config.yaml:/app/server.config.yaml"
+      - "./three/data/admin:/app/data"
     depends_on:
       - node-three
   demo-one:
