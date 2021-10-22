@@ -1,57 +1,91 @@
-version: "3.7"
+version: "3.9"
 services:
   node-one:
+    profiles:
+      - one
+      - two
+      - three
     image: nutsfoundation/nuts-node:master
     environment:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
     ports:
       - 1323:1323
       - 5555:5555
-    healthcheck:
-      test: "curl -f http://localhost:1323/status || exit 1"
     volumes:
       - "./one/config/node/nuts.yaml:/opt/nuts/nuts.yaml"
       - "./one/data/node:/opt/nuts/data"
   node-two:
+    profiles:
+      - two
+      - three
     image: nutsfoundation/nuts-node:master
     environment:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
     ports:
       - 2323:1323
-    healthcheck:
-      test: "curl -f http://localhost:1323/status || exit 1"
     volumes:
       - "./two/config/node/nuts.yaml:/opt/nuts/nuts.yaml"
       - "./two/data/node:/opt/nuts/data"
+  node-three:
+    profiles:
+      - three
+    image: nutsfoundation/nuts-node:master
+    environment:
+      NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
+    ports:
+      - 3323:1323
+    volumes:
+      - "./three/config/node/nuts.yaml:/opt/nuts/nuts.yaml"
+      - "./three/data/node:/opt/nuts/data"
   admin-one:
+    profiles:
+      - with-admin-one
     image: nutsfoundation/nuts-registry-admin-demo:master
     ports:
       - 1303:1303
-    healthcheck:
-      test: "curl -f http://localhost:1303/status || exit 1"
     volumes:
       - "./one/config/admin/server.config.yaml:/app/server.config.yaml"
       - "./one/data/admin:/app/data"
+    depends_on:
+      - node-one
   admin-two:
+    profiles:
+      - with-admin-two
     image: nutsfoundation/nuts-registry-admin-demo:master
     ports:
       - 2303:1303
-    healthcheck:
-      test: "curl -f http://localhost:1303/status || exit 1"
     volumes:
       - "./two/config/admin/server.config.yaml:/app/server.config.yaml"
       - "./two/data/admin:/app/data"
+    depends_on:
+      - node-two
+  admin-three:
+    profiles:
+      - with-admin-three
+    image: nutsfoundation/nuts-registry-admin-demo:master
+    ports:
+      - 3303:1303
+    volumes:
+      - "./three/config/admin/server.config.yaml:/app/server.config.yaml"
+      - "./three/data/admin:/app/data"
+    depends_on:
+      - node-three
   demo-one:
+    profiles:
+      - with-demo-one
     image: nutsfoundation/nuts-demo-ehr:main
     ports:
       - 1304:1304
-    healthcheck:
-      test: "curl -f http://localhost:1304/status | exit 1"
     volumes:
       - "./one/config/demo/server.config.yaml:/app/server.config.yaml"
       - "./one/data/admin/customers.json:/app/customers.json:ro"
       - "./one/data/demo:/app/data"
+    depends_on:
+      - hapi-one
+      - node-one
   hapi-one:
+    profiles:
+      - with-demo-one
     image: hapiproject/hapi:v5.4.1
     environment:
       hapi.fhir.fhir_version: DSTU3
@@ -61,16 +95,21 @@ services:
     volumes:
       - "./one/data/hapi:/usr/local/tomcat/target"
   demo-two:
+    profiles:
+      - with-demo-two
     image: nutsfoundation/nuts-demo-ehr:main
     ports:
       - 2304:1304
-    healthcheck:
-      test: "curl -f http://localhost:1304/status | exit 1"
     volumes:
       - "./two/config/demo/server.config.yaml:/app/server.config.yaml"
       - "./two/data/admin/customers.json:/app/customers.json:ro"
       - "./two/data/demo:/app/data"
+    depends_on:
+      - hapi-two
+      - node-two
   hapi-two:
+    profiles:
+      - with-demo-two
     image: hapiproject/hapi:v5.4.1
     environment:
       hapi.fhir.fhir_version: DSTU3
@@ -79,3 +118,27 @@ services:
       - 8080
     volumes:
       - "./two/data/hapi:/usr/local/tomcat/target"
+  demo-three:
+    profiles:
+      - with-demo-three
+    image: nutsfoundation/nuts-demo-ehr:main
+    ports:
+      - 3304:1304
+    volumes:
+      - "./three/config/demo/server.config.yaml:/app/server.config.yaml"
+      - "./three/data/admin/customers.json:/app/customers.json:ro"
+      - "./three/data/demo:/app/data"
+    depends_on:
+      - hapi-three
+      - node-three
+  hapi-three:
+    profiles:
+      - with-demo-three
+    image: hapiproject/hapi:v5.4.1
+    environment:
+      hapi.fhir.fhir_version: DSTU3
+      hapi.fhir.partitioning.allow_references_across_partitions: "false"
+    expose:
+      - 8080
+    volumes:
+      - "./three/data/hapi:/usr/local/tomcat/target"
