@@ -10,6 +10,7 @@ services:
     volumes:
       - "./config/node/nuts.yaml:/opt/nuts/nuts.yaml"
       - "./data/node:/opt/nuts/data"
+      - "./ssl/node:/opt/nuts/ssl"
   admin:
     image: nutsfoundation/nuts-registry-admin-demo:master
     ports:
