@@ -27,7 +27,7 @@ services:
       - "./data/admin/customers.json:/app/customers.json:ro"
       - "./data/demo:/app/data"
   hapi:
-    image: hapiproject/hapi:v5.4.1
+    image: hapiproject/hapi:v5.5.2
     environment:
       hapi.fhir.fhir_version: DSTU3
       hapi.fhir.partitioning.allow_references_across_partitions: "false"
