@@ -24,7 +24,7 @@ services:
       - "1304:1304"
     volumes:
       - "./config/demo/server.config.yaml:/app/server.config.yaml"
-      - "./data/admin/customers.json:/app/customers.json:ro"
+      - "./data/admin:/app/admin-data:ro"
       - "./data/demo:/app/data"
   hapi:
     image: hapiproject/hapi:v5.4.1

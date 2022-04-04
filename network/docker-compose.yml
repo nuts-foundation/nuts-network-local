@@ -78,7 +78,7 @@ services:
       - 1304:1304
     volumes:
       - "./one/config/demo/server.config.yaml:/app/server.config.yaml"
-      - "./one/data/admin/customers.json:/app/customers.json:ro"
+      - "./one/data/admin:/app/admin-data:ro"
       - "./one/data/demo:/app/data"
     depends_on:
       - hapi-one
@@ -102,7 +102,7 @@ services:
       - 2304:1304
     volumes:
       - "./two/config/demo/server.config.yaml:/app/server.config.yaml"
-      - "./two/data/admin/customers.json:/app/customers.json:ro"
+      - "./two/data/admin:/app/admin-data:ro"
       - "./two/data/demo:/app/data"
     depends_on:
       - hapi-two
@@ -126,7 +126,7 @@ services:
       - 3304:1304
     volumes:
       - "./three/config/demo/server.config.yaml:/app/server.config.yaml"
-      - "./three/data/admin/customers.json:/app/customers.json:ro"
+      - "./three/data/admin:/app/admin-data:ro"
       - "./three/data/demo:/app/data"
     depends_on:
       - hapi-three

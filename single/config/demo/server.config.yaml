@@ -4,7 +4,7 @@ credentials:
 port: 1304
 dbfile: /app/data/registry-admin.db
 dbConnectionString : file:/app/data/ehr.db
-customersfile: /app/customers.json
+customersfile: /app/admin-data/customers.json
 nutsnodeaddr: http://node:1323
 fhir:
   server:
