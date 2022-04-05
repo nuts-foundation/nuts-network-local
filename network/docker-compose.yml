@@ -23,6 +23,7 @@ services:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
     ports:
       - 2323:1323
+      - 2555:5555
     volumes:
       - "./two/config/node/nuts.yaml:/opt/nuts/nuts.yaml"
       - "./two/data/node:/opt/nuts/data"
@@ -34,6 +35,7 @@ services:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
     ports:
       - 3323:1323
+      - 3555:5555
     volumes:
       - "./three/config/node/nuts.yaml:/opt/nuts/nuts.yaml"
       - "./three/data/node:/opt/nuts/data"
@@ -86,7 +88,7 @@ services:
   hapi-one:
     profiles:
       - with-demo-one
-    image: hapiproject/hapi:v5.4.1
+    image: hapiproject/hapi:v5.5.2
     environment:
       hapi.fhir.fhir_version: DSTU3
       hapi.fhir.partitioning.allow_references_across_partitions: "false"
@@ -110,7 +112,7 @@ services:
   hapi-two:
     profiles:
       - with-demo-two
-    image: hapiproject/hapi:v5.4.1
+    image: hapiproject/hapi:v5.5.2
     environment:
       hapi.fhir.fhir_version: DSTU3
       hapi.fhir.partitioning.allow_references_across_partitions: "false"
@@ -134,7 +136,7 @@ services:
   hapi-three:
     profiles:
       - with-demo-three
-    image: hapiproject/hapi:v5.4.1
+    image: hapiproject/hapi:v5.5.2
     environment:
       hapi.fhir.fhir_version: DSTU3
       hapi.fhir.partitioning.allow_references_across_partitions: "false"
