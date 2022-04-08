@@ -4,9 +4,9 @@ This directory allows you to start up a local network of max 3 nodes.
 
 Using [docker-compose profiles](https://docs.docker.com/compose/profiles/) you can create different configurations.
 
-For example, the following command will start up a network of 1 node and an admin portal:
+For example, the following command will start up a network of 1 node and an admin portal and Demo EHR:
 ```shell
-docker-compose --profile one --profile with-admin-one up
+docker-compose --profile one --profile with-admin-one --profile with-demo-one up
 ```
 
 ## The following profiles are available:
