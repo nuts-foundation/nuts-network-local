@@ -7,3 +7,4 @@ http:
 verbosity: debug
 network:
   enabletls: false
+  disablenodeauthentication: true
