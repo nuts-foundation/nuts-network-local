@@ -8,3 +8,5 @@ verbosity: debug
 network:
   enabletls: false
   disablenodeauthentication: true
+  v2:
+    gossipinterval: 500

@@ -9,3 +9,5 @@ network:
   enabletls: false
   bootstrapnodes: node-one:5555
   disablenodeauthentication: true
+  v2:
+    gossipinterval: 500
