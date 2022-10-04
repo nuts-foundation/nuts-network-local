@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   node:
-    image: nutsfoundation/nuts-node:master
+    image: nutsfoundation/nuts-node:latest
     environment:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
     ports:
