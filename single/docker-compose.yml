@@ -12,7 +12,7 @@ services:
       - "./data/node:/opt/nuts/data"
       - "./ssl/node:/opt/nuts/ssl"
   admin:
-    image: nutsfoundation/nuts-registry-admin-demo:master
+    image: nutsfoundation/nuts-registry-admin-demo:latest
     ports:
       - "127.0.0.1:1303:1303"
     volumes:

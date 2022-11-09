@@ -18,7 +18,7 @@ services:
     profiles:
       - two
       - three
-    image: nutsfoundation/nuts-node:master
+    image: nutsfoundation/nuts-node:latest
     environment:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
     ports:
@@ -30,7 +30,7 @@ services:
   node-three:
     profiles:
       - three
-    image: nutsfoundation/nuts-node:master
+    image: nutsfoundation/nuts-node:latest
     environment:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
     ports:
@@ -42,7 +42,7 @@ services:
   admin-one:
     profiles:
       - with-admin-one
-    image: nutsfoundation/nuts-registry-admin-demo:master
+    image: nutsfoundation/nuts-registry-admin-demo:latest
     ports:
       - 1303:1303
     volumes:
@@ -53,7 +53,7 @@ services:
   admin-two:
     profiles:
       - with-admin-two
-    image: nutsfoundation/nuts-registry-admin-demo:master
+    image: nutsfoundation/nuts-registry-admin-demo:latest
     ports:
       - 2303:1303
     volumes:
@@ -64,7 +64,7 @@ services:
   admin-three:
     profiles:
       - with-admin-three
-    image: nutsfoundation/nuts-registry-admin-demo:master
+    image: nutsfoundation/nuts-registry-admin-demo:latest
     ports:
       - 3303:1303
     volumes:
