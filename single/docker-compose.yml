@@ -19,7 +19,7 @@ services:
       - "./config/admin/server.config.yaml:/app/server.config.yaml"
       - "./data/admin:/app/data"
   demo:
-    image: nutsfoundation/nuts-demo-ehr:main
+    image: nutsfoundation/nuts-demo-ehr:latest
     ports:
       - "1304:1304"
     volumes:
