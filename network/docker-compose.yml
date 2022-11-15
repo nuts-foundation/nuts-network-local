@@ -75,7 +75,7 @@ services:
   demo-one:
     profiles:
       - with-demo-one
-    image: nutsfoundation/nuts-demo-ehr:main
+    image: nutsfoundation/nuts-demo-ehr:latest
     ports:
       - 1304:1304
     volumes:
@@ -99,7 +99,7 @@ services:
   demo-two:
     profiles:
       - with-demo-two
-    image: nutsfoundation/nuts-demo-ehr:main
+    image: nutsfoundation/nuts-demo-ehr:latest
     ports:
       - 2304:1304
     volumes:
@@ -123,7 +123,7 @@ services:
   demo-three:
     profiles:
       - with-demo-three
-    image: nutsfoundation/nuts-demo-ehr:main
+    image: nutsfoundation/nuts-demo-ehr:latest
     ports:
       - 3304:1304
     volumes:
