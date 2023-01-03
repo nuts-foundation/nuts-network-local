@@ -1,4 +1,5 @@
 datadir: /opt/nuts/data
+strictmode: false
 http:
   default:
     address: :1323
